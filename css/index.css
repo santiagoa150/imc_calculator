@@ -1,0 +1,21 @@
+#index-container {
+    
+    & #index-title, & #index-actions{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+        
+    }
+
+    & #index-title{
+        justify-content: left;
+        padding-left: 1.5%;
+    }
+
+    & #index-actions{
+        justify-content: right;
+        padding-right: 1.5%;
+        gap: 20px;
+    }
+}
