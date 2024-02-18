@@ -9,11 +9,11 @@ app.use(express.json());
 app.use(cors());
 
 const dbConfig = {
-    user: "postgres", // usuario de la base de datos
-    password: "requisitos2", // contraseña de la base de datos
-    host: "34.47.6.120",
-    database: "RequisitosTaller2", // nombre de la base de datos
-    port: 5432,
+    user: "", // usuario de la base de datos
+    password: "", // contraseña de la base de datos
+    host: "",
+    database: "", // nombre de la base de datos
+    port: ,
 };
 
 app.listen(port, () => {
