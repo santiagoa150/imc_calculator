@@ -10,7 +10,7 @@ async function getUserData() {
     const elementsToHide = document.getElementsByClassName('hide_when_login')
 
     for (ele of elements) {
-        if (data?.identification) {
+        if (data?.cc) {
             ele.style.display = 'block'
         } else {
             ele.style.display = 'none'
@@ -18,7 +18,7 @@ async function getUserData() {
     }
 
     for (ele of elementsToHide) {
-        if (data?.identification) {
+        if (data?.cc) {
             ele.style.display = 'none'
         } else {
             ele.style.display = 'block'

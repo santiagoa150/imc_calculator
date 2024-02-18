@@ -9,10 +9,10 @@
 # Modelos de datos:
 
 Usuario:
-- Id
-- Nombre completo
-- Cédula del usuario
-- Contraseña
+- Id (tipo entero serial)
+- Nombre completo (varchar 50 )
+- Cédula del usuario (integer (la cédula se introduce sin puntos),llave primaria)
+- Contraseña(varchar 50 )
 
 IMC:
 - Id_IMC
@@ -20,6 +20,7 @@ IMC:
 - Fecha de creación
 - peso 
 - altura
+-imc
 
 *Se asume que se está usando el sistema métrico internacional.*
 *Se debe especificar en la página principal.*
