@@ -1,54 +1,46 @@
 const express = require("express");
-const { Client, Connection } = require("pg");
-const cors = require("cors");
+const router = express.Router();
+const { Client } = require("pg");
 
-const app = express();
-const port = 4545;
-
-app.use(express.json());
-app.use(cors());
+require('dotenv').config()
 
 const dbConfig = {
-    user: "", // usuario de la base de datos
-    password: "", // contraseña de la base de datos
-    host: "",
-    database: "", // nombre de la base de datos
-    port: ,
+    user: process.env.DATABASE_USERNAME,
+    password: process.env.DATABASE_PASSWORD,
+    host: process.env.DATABASE_HOST,
+    database: process.env.DATABASE_NAME,
+    port: Number(process.env.DATABASE_PORT),
 };
 
-app.listen(port, () => {
-    console.log(`Servidor escuchando en el puerto ${port}`);
-});
-
-app.post("/login", (request, response) => {
-    const cedula = request.body.cc;
-    const contraseña = request.body.password;
-
+router.get("/login/request", (request, response) => {
+    const cedula = request.query.ID;
+    const contraseña = request.query.password;
     const connection = new Client(dbConfig);
 
     connection.connect((err) => {
         if (err) {
             console.error("Error en la conexión:", err);
-            response.status(500).send("Error en la conexión a la base de datos.");
+            response.redirect('/err?e=Error en la conexión a la base de datos.');
             return;
         }
 
         const query = {
-            text: 'SELECT Id FROM usuarios WHERE cc = $1 AND password = $2',
+            text: 'SELECT Id, cc FROM usuarios WHERE cc = $1 AND password = $2',
             values: [cedula, contraseña],
         };
-
         connection.query(query, (err, result) => {
             if (err) {
                 console.error("Error en la consulta de login:", err);
-                response.status(500).send("Error en la ejecución de la consulta de login.");
+                response.redirect('/err?e=Error en la ejecución de la consulta de login.');
             } else {
                 if (result.rows.length > 0) {
+                    const user = result?.rows?.[0];
+                    request.session.userLoggedId = user.cc;
                     console.log("Usuario autenticado");
-                    response.send("Usuario autenticado");
+                    response.redirect('/');
                 } else {
                     console.log("Credenciales incorrectas");
-                    response.status(401).send("Credenciales incorrectas");
+                    response.redirect('/login?error=notfound');
                 }
             }
 
@@ -57,7 +49,7 @@ app.post("/login", (request, response) => {
     });
 });
 
-app.post("/sign_up", (request, response) => {
+router.post("/sign_up", (request, response) => {
     const cedula = request.body.cc;
     const contraseña = request.body.password;
     const nombre = request.body.nombrecompleto;
@@ -83,10 +75,6 @@ app.post("/sign_up", (request, response) => {
                 '"fecha" date NOT NULL, ' +
                 '"imc" float NOT NULL );',
         };
-
-
-
-
         connection.query(insert, (err) => {
             if (err) {
                 console.error("Error en la consulta de registro:", err);
@@ -109,7 +97,7 @@ app.post("/sign_up", (request, response) => {
     });
 });
 
-app.post("/insert_imc", (request, response) => {
+router.post("/insert_imc", (request, response) => {
     const cedula = request.body.cc;
     const altura = request.body.altura;
     const peso = request.body.peso;
@@ -145,19 +133,17 @@ app.post("/insert_imc", (request, response) => {
     });
 });
 
-app.post("/get_data", (request, response )=>{
+router.get("/get_imcs", (request, response) => {
     const cedula = request.body.cc
-
-    
     const connection = new Client(dbConfig);
-    connection.connect((err)=>{
+    connection.connect((err) => {
         if (err) {
             console.error("Error en la conexión:", err);
             response.status(500).send("Error en la conexión a la base de datos.");
             return;
         }
 
-        const select= {
+        const select = {
             text: `SELECT * FROM "${cedula}"`
         }
         connection.query(select, (err, result) => {
@@ -166,10 +152,39 @@ app.post("/get_data", (request, response )=>{
                 response.status(500).send("Error en la inserción del imc.");
             } else {
                 console.log("registro obtenido correctamente")
-                response.status(200).send({
-                    data: result.rows ,
-                })
+                response.status(200).send({ data: result.rows })
             }
         });
     })
-})
+});
+
+router.get('/getData', async (req, res) => {
+    // Implmentar funcion para traer los datos del perfil
+    const userId = req.session?.userLoggedId;
+    console.log(userId);
+    const connection = new Client(dbConfig);
+    connection.connect((err) => {
+        if (err) {
+            console.error("Error en la conexión:", err);
+            response.status(500).send("Error en la conexión a la base de datos.");
+            return;
+        }
+
+        const select = {
+            text: `SELECT * FROM usuarios WHERE cc=$1`,
+            values: [userId]
+        }
+        connection.query(select, (err, result) => {
+            if (err) {
+                console.error("Error en la inserción del imc:", err);
+                response.status(500).send("Error en la inserción del imc.");
+            } else {
+                console.log("registro obtenido correctamente")
+                const user = result?.rows?.[0];
+                res.status(200).json(user ? user : {});
+            }
+        });
+    })    
+});
+
+module.exports = router;
