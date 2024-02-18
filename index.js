@@ -39,6 +39,7 @@ app.get('/login', (req, res) => {
     }
     res.sendFile(path.resolve(__dirname, 'routes/login/index.html'))
 });
+
 app.get('/login/request', async (req, res, next) => {
     const id = req.query.ID;
     const password = req.query.password;
@@ -55,6 +56,7 @@ app.get('/login/request', async (req, res, next) => {
         res.redirect('/login?error=notfound')
     }
 });
+
 app.get('/logout', (req, res) => {
     req.session = null;
     res.redirect('/');
