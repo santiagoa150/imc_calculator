@@ -1,18 +1,18 @@
+/*
+    Este archivo solo debe utilizarse para estilos genéricos de la aplicación.
+*/
 body {
     width: 100vw;
     height: 100vh;
     padding: 0;
     margin: 0;
-    font-family: "Russo One", sans-serif;
-    letter-spacing: 0.25em;
-    font-weight: 400;
+    font-family: "Lilita One", sans-serif;
     font-style: normal;
     color: #333232;
 }
 
 button, input {
-    font-family: "Russo One", sans-serif;
-    letter-spacing: 0.05em;
+    font-family: "Lilita One", sans-serif;
     height: 35px;
     border: 0;
     border-radius: 2px;
@@ -43,7 +43,7 @@ h1 {
 
 .empty-button {
     background-color: white;
-    transition: 1s;
+    transition: 0.5s;
     &:hover {
         color: #1269ce;
         border-bottom-style: solid;

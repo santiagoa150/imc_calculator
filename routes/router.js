@@ -21,6 +21,13 @@ router.get('/login', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'login/index.html'))
 });
 
+router.get('/register', (req, res) => {
+    if (isLogged(req.session)) {
+        res.redirect('/')
+    }
+    res.sendFile(path.resolve(__dirname, 'register/index.html'))
+})
+
 /**
  * Ruta del perfíl.
  */

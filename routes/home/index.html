@@ -7,12 +7,12 @@
     <title>Inicio</title>
 
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
-    <link rel="stylesheet" href="./css/styles.css">
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/index.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -20,20 +20,45 @@
         <header>
             <div id="index-title">
                 <h1>IMC</h1>
+                <h3>Calculadora</h3>
             </div>
-            <h3>Calculadora</h3>
-            <div class="show_when_login">
-
-                <a href="/profile"><input type="button" value="Ir a perfil" class="empty-button" /></a>
-
-            </div>
-            <div id="index-actions" class="hide_when_login">
-                <input type="button" value="Crear cuenta" class="gold-button" />
-                <a href="/login"><input type="button" value="Iniciar sesión" class="empty-button" /></a>
+            
+            <div id="index-actions">
+                <a href="/logout" class="show_when_login">cerrar session</a>
+                <div class="show_when_login">
+                    <a href="/profile"><input type="button" value="Ir a perfil" class="empty-button" /></a>
+                </div>
+                <input type="button" value="Crear cuenta" class="gold-button hide_when_login" />
+                <a href="/login"><input type="button" value="Iniciar sesión" class="empty-button hide_when_login" /></a>
             </div>
         </header>
         <section>
-            <a href="/logout" class="show_when_login">cerrar session</a>
+            <form>
+                <div>
+                    <label>Peso en kilogramos:</label>
+                    <div class="input-container">
+                        <input placeholder="peso" type="number" class="input">
+                        <span>kg</span>
+                    </div>
+                </div>
+                <div>
+                    <label>Altura en metros:</label>
+                    <div class="input-container">
+                        <input placeholder="altura" type="number" class="input">
+                        <span>m</span>
+                    </div>
+                </div>
+                <input type="submit" value="Calcular" class="gold-button">
+            </form>
+            <div>
+                <div class="radio-input">
+                    <input name="radio" type="radio" class="option-input" disabled>
+                    <input name="radio" type="radio" class="option-input" disabled>
+                    <input name="radio" type="radio" class="option-input" disabled>
+                    <input name="radio" type="radio" class="option-input" disabled>
+                    <input name="radio" type="radio" class="option-input">
+                </div>
+            </div>
         </section>
     </div>
     <script src="/assets/js/session.js"></script>
