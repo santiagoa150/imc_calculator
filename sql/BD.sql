@@ -8,16 +8,16 @@ CREATE DATABASE "RequisitosTaller2"
 
 COMMENT ON DATABASE "RequisitosTaller2"
     IS 'base de datos para el taller 2 de requisitos';
-CREATE TABLE public."Usuario"
+CREATE TABLE public."usuarios"
 (
-    "Id" serial NOT NULL,
-    "Nombre_Completo" character varying(50) NOT NULL,
-    "CC" integer NOT NULL,
-    "Password" character varying(50),
+    "id" serial NOT NULL,
+    "nombre_completo" character varying(50) NOT NULL,
+    "cc" integer NOT NULL,
+    "password" character varying(50),
     PRIMARY KEY ("CC")
 );
 
-ALTER TABLE IF EXISTS public."Usuario"
+ALTER TABLE IF EXISTS public."usuarios"
     OWNER to postgres;
 
     

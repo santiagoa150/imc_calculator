@@ -10,9 +10,9 @@ app.use(cors());
 
 const dbConfig = {
     user: "postgres", // usuario de la base de datos
-    password: "123", // contraseña de la base de datos
-    host: "localhost",
-    database: "Ingenieriaderequisitos2", // nombre de la base de datos
+    password: "requisitos2", // contraseña de la base de datos
+    host: "34.47.6.120",
+    database: "RequisitosTaller2", // nombre de la base de datos
     port: 5432,
 };
 
@@ -61,7 +61,6 @@ app.post("/sign_up", (request, response) => {
     const cedula = request.body.cc;
     const contraseña = request.body.password;
     const nombre = request.body.nombrecompleto;
-
     const connection = new Client(dbConfig);
 
     connection.connect((err) => {
@@ -72,7 +71,7 @@ app.post("/sign_up", (request, response) => {
         }
 
         const insert = {
-            text: 'INSERT INTO Usuarios ("nombre_completo", "cc", "password") VALUES ($1, $2, $3)',
+            text: 'INSERT INTO usuarios ("nombre_completo", "cc", "password") VALUES ($1, $2, $3)',
             values: [nombre, cedula, contraseña],
         };
 
