@@ -22,7 +22,7 @@
                 <h1>IMC</h1>
                 <h3>Calculadora</h3>
             </div>
-            
+
             <div id="index-actions">
                 <a href="/logout" class="show_when_login">cerrar session</a>
                 <div class="show_when_login">
@@ -35,30 +35,40 @@
         <section>
             <form>
                 <div>
+                    <p style="text-align: justify;">
+                        ¿Estás interesado en mantener un
+                        estilo de vida saludable? Con nuestra herramienta, puedes calcular fácilmente tu IMC ingresando
+                        tu peso
+                        en kilogramos y tu altura en metros. El IMC es una medida útil para evaluar tu salud en relación
+                        con tu
+                        peso y estatura.
+                    </p>
+                </div>
+                <div class="input-card">
                     <label>Peso en kilogramos:</label>
                     <div class="input-container">
                         <input placeholder="peso" type="number" class="input">
                         <span>kg</span>
                     </div>
                 </div>
-                <div>
+                <div class="input-card">
                     <label>Altura en metros:</label>
                     <div class="input-container">
                         <input placeholder="altura" type="number" class="input">
                         <span>m</span>
                     </div>
                 </div>
-                <input type="submit" value="Calcular" class="gold-button">
-            </form>
-            <div>
-                <div class="radio-input">
-                    <input name="radio" type="radio" class="option-input" disabled>
-                    <input name="radio" type="radio" class="option-input" disabled>
-                    <input name="radio" type="radio" class="option-input" disabled>
-                    <input name="radio" type="radio" class="option-input" disabled>
-                    <input name="radio" type="radio" class="option-input">
+                <input type="submit" value="Calcular" class="gold-button index-form-button">
+                <div id="result-container">
+                    <div id="result-card">
+                        <img src="/assets/question-mark.png">
+                        <div>
+                            <h4 style="margin: 0;">¡Ingresa los valores para conocer tu resultado!</h4>
+                            <p id="resultado-value">Tu resultado es: 40.5</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </form>
         </section>
     </div>
     <script src="/assets/js/session.js"></script>
