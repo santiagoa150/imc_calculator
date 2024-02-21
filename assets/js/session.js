@@ -10,7 +10,9 @@ async function getUserData() {
 
     for (ele of elements) {
         if (data?.cc) {
-            ele.style.display = 'block'
+            if (!ele.classList.contains('not_display_when_login')){
+                ele.style.display = 'block'
+            }
         } else {
             ele.style.display = 'none'
         }

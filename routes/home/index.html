@@ -24,11 +24,12 @@
             </div>
 
             <div id="index-actions">
-                <a href="/logout" class="show_when_login"><input type="button" value="Cerrar sesión" class="empty-button"></a>
+                <a href="/logout" class="show_when_login"><input type="button" value="Cerrar sesión"
+                        class="empty-button"></a>
                 <div class="show_when_login">
                     <a href="/profile"><input type="button" value="Ir a perfil" class="empty-button" /></a>
                 </div>
-                <input type="button" value="Crear cuenta" class="gold-button hide_when_login" />
+                <a href="/register" style="text-decoration: none;"><input type="button" value="Crear cuenta" class="gold-button hide_when_login" /></a>
                 <a href="/login"><input type="button" value="Iniciar sesión" class="empty-button hide_when_login" /></a>
             </div>
         </header>
@@ -47,30 +48,46 @@
                 <div class="input-card">
                     <label>Peso en kilogramos:</label>
                     <div class="input-container">
-                        <input id="peso_input" placeholder="Peso" type="number" class="input" min="1" max="600" step=".1" oninput="setInputLimits(this);">
+                        <input id="peso_input" placeholder="Peso" type="number" class="input" min="1" max="600"
+                            step=".1" oninput="setInputLimits(this);">
                         <span>kg</span>
                     </div>
                 </div>
                 <div class="input-card">
                     <label>Altura en metros:</label>
                     <div class="input-container">
-                        <input id="altura_input" placeholder="Altura" type="number" class="input" min="0.1" max="3" step=".1" oninput="setInputLimits(this);">
+                        <input id="altura_input" placeholder="Altura" type="number" class="input" min="0.1" max="3"
+                            step=".1" oninput="setInputLimits(this);">
                         <span>m</span>
                     </div>
                 </div>
                 <div class="buttons-container">
-                    <input id="limpiar_button" type="button" value="Borrar" class="red-button index-form-button" style="display: none;" onclick="deleteIMC(this)">
-                    <input id="guardar_button" type="button" value="Guardar" class="gold-button index-form-button" style="display: none;">
-                    <input id="calcular_button" type="button" value="Calcular" class="gold-button index-form-button" onclick="calculateIMC(this);">
+                    <input id="limpiar_button" type="button" value="Borrar" class="red-button index-form-button"
+                        style="display: none;" onclick="deleteIMC(this)">
+                    <input id="guardar_button" type="button" 
+                    onclick="saveIMC(this)"
+                    value="Guardar" class="gold-button index-form-button show_when_login not_display_when_login"
+                        style="display: none;">
+                    <input id="calcular_button" type="button" value="Calcular" class="gold-button index-form-button"
+                        onclick="calculateIMC(this);">
                 </div>
                 <div id="result-container">
                     <div id="result-card"></div>
                 </div>
             </form>
         </section>
+        <!-- Modal where the required warning is displayed. -->
+        <div class="modal-container" id="missing-data-modal">
+            <div class="modal">
+                <img id="img-blue-alert" src="/assets/warning.png" alt="Alerta" />
+                <h2>Debes ingresar los datos requeridos.</h2>
+                <button style="width: 30%;"  class="gold-button" onclick="setModalDisplay('missing-data-modal', 'none')">Aceptar</button>
+            </div>
+        </div>
     </div>
     <script src="/assets/js/session.js"></script>
     <script src="/assets/js/home.js"></script>
+    <script src="/assets/js/utils.js"></script>
 </body>
 
 </html>
