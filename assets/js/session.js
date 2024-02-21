@@ -5,7 +5,6 @@
 async function getUserData() {
     const response = await fetch('/getData');
     const data = await response.json();
-    console.log('esta log', data)
     const elements = document.getElementsByClassName('show_when_login');
     const elementsToHide = document.getElementsByClassName('hide_when_login')
 

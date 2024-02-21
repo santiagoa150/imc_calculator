@@ -49,7 +49,14 @@
         margin: 0 0 20px 0;
       }
 
-      & input[type=submit] {
+      & .buttons-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      & input[type=button] {
         width: 30%;
       }
     }
@@ -101,7 +108,7 @@
     align-items: center;
     box-sizing: border-box;
     padding: 0 10px 0 10px;
-
+    transition: 2s;
     & img {
       width: 80px;
     }
@@ -137,7 +144,7 @@
 }
 
 .index-form-button{
-  height: 60px;
+  height: 40px;
 }
 
 .input-container {

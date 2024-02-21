@@ -41,6 +41,16 @@ h1 {
     }
 }
 
+.red-button {
+    background-color:  #f44336;
+    color: white;
+    transition: 0.5s;
+
+    &:hover {
+        background-color:  #bc2a20;
+    }
+}
+
 .empty-button {
     background-color: white;
     transition: 0.5s;
