@@ -62,3 +62,37 @@ h1 {
         line-height: 15pt;
     }
 }
+
+.modal-container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    top: 0;
+    z-index: 999;
+
+    & .modal {
+        background: white;
+        width: 35%;
+        height: 70%;
+        border-radius: 5px;
+        transition: width 1s;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+
+        @media (width < 750px) {
+            width: 70%;
+            height: 80%;
+        }
+    }
+}
+
+#img-blue-alert {
+    width: 200px;
+}
