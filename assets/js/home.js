@@ -1,4 +1,5 @@
 let imc = NaN;
+let user = undefined;
 const imcData = {
     EMPTY: {
         img: "/assets/question-mark.png",
@@ -56,18 +57,46 @@ function setInputLimits(element) {
 }
 
 
-function calculateIMC(event) {
-    event.style.display = 'none';
-    document.getElementById('limpiar_button').style.display = 'block';
-    document.getElementById('guardar_button').style.display = 'block';
+async function calculateIMC(event) {
+
+    const response = await fetch('/getData');
+    user = await response.json();
+
     const pesoInput = document.getElementById('peso_input');
     const alturaInput = document.getElementById('altura_input');
+
+    if (!pesoInput.value || !alturaInput.value) {
+        setModalDisplay('missing-data-modal', 'flex');
+        return;
+    }
+
+    event.style.display = 'none';
+    document.getElementById('limpiar_button').style.display = 'block';
     pesoInput.setAttribute('disabled', true);
     alturaInput.setAttribute('disabled', true);
     const peso = parseFloat(pesoInput.value);
     const altura = parseFloat(alturaInput.value);
     imc = peso / (altura * altura);
+
+    if (user?.cc) document.getElementById('guardar_button').style.display = 'block';
     decorateResult();
+}
+
+async function saveIMC() {
+    fetch('/insert_imc', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            cc: user?.cc,
+            altura: document.getElementById('altura_input').value,
+            peso: document.getElementById('peso_input').value,
+        })
+    }).then(() => {
+        window.location = '/profile'
+    });
 }
 
 function deleteIMC(event) {

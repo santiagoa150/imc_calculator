@@ -106,7 +106,7 @@ router.post("/insert_imc", (request, response) => {
     // const imc = request.body.imc; 
     const imc = peso / (altura * altura)
     const connection = new Client(dbConfig);
-
+    console.log(cedula, altura, peso, fecha, imc);
     connection.connect((err) => {
         if (err) {
             console.error("Error en la conexión:", err);
