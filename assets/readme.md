@@ -1,0 +1,1 @@
+Aca van los archivos que se sirven al cliente, como los css y los javascripts que se usen en el navegador.

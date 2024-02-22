@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/index.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="index-container">
+        <header>
+            <div id="index-title">
+                <h1>IMC</h1>
+                <h3>Calculadora</h3>
+            </div>
+
+            <div id="index-actions">
+                <a href="/logout" class="show_when_login"><input type="button" value="Cerrar sesión"
+                        class="empty-button"></a>
+                <div class="show_when_login">
+                    <a href="/profile"><input type="button" value="Ir a perfil" class="empty-button" /></a>
+                </div>
+                <a href="/register" style="text-decoration: none;"><input type="button" value="Crear cuenta" class="gold-button hide_when_login" /></a>
+                <a href="/login"><input type="button" value="Iniciar sesión" class="empty-button hide_when_login" /></a>
+            </div>
+        </header>
+        <section>
+            <form>
+                <div>
+                    <p style="text-align: justify;">
+                        ¿Estás interesado en mantener un
+                        estilo de vida saludable? Con nuestra herramienta, puedes calcular fácilmente tu IMC ingresando
+                        tu peso
+                        en kilogramos y tu altura en metros. El IMC es una medida útil para evaluar tu salud en relación
+                        con tu
+                        peso y estatura.
+                    </p>
+                </div>
+                <div class="input-card">
+                    <label>Peso en kilogramos:</label>
+                    <div class="input-container">
+                        <input id="peso_input" placeholder="Peso" type="number" class="input" min="1" max="600"
+                            step=".1" oninput="setInputLimits(this);">
+                        <span>kg</span>
+                    </div>
+                </div>
+                <div class="input-card">
+                    <label>Altura en metros:</label>
+                    <div class="input-container">
+                        <input id="altura_input" placeholder="Altura" type="number" class="input" min="0.1" max="3"
+                            step=".1" oninput="setInputLimits(this);">
+                        <span>m</span>
+                    </div>
+                </div>
+                <div class="buttons-container">
+                    <input id="limpiar_button" type="button" value="Borrar" class="red-button index-form-button"
+                        style="display: none;" onclick="deleteIMC(this)">
+                    <input id="guardar_button" type="button" 
+                    onclick="saveIMC(this)"
+                    value="Guardar" class="gold-button index-form-button show_when_login not_display_when_login"
+                        style="display: none;">
+                    <input id="calcular_button" type="button" value="Calcular" class="gold-button index-form-button"
+                        onclick="calculateIMC(this);">
+                </div>
+                <div id="result-container">
+                    <div id="result-card"></div>
+                </div>
+            </form>
+        </section>
+        <!-- Modal where the required warning is displayed. -->
+        <div class="modal-container" id="missing-data-modal">
+            <div class="modal">
+                <img id="img-blue-alert" src="/assets/warning.png" alt="Alerta" />
+                <h2>Debes ingresar los datos requeridos.</h2>
+                <button style="width: 30%;"  class="gold-button" onclick="setModalDisplay('missing-data-modal', 'none')">Aceptar</button>
+            </div>
+        </div>
+    </div>
+    <script src="/assets/js/session.js"></script>
+    <script src="/assets/js/home.js"></script>
+    <script src="/assets/js/utils.js"></script>
+</body>
+
+</html>
