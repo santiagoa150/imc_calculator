@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
+    <title>Registro CV</title>
 
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
     <link rel="stylesheet" href="/assets/css/register.css">
@@ -15,9 +15,9 @@
 </head>
 <body>
     
-    <form action="/sign_up" method="post" id="formularioRegistro">
+    <form >
         <div id="title_register">
-            <h1>Registro</h1>
+            <h1>Registro CV</h1>
         </div>
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" name="nombre" required>
@@ -31,10 +31,10 @@
         <label for="confirmPassword">Confirmar Contraseña:</label>
         <input type="password" id="confirmPassword" name="confirmPassword" required>
     
-        <button type="submit">Registrarse</button>
+        <button onclick="submitForm(this);" id="formularioRegistro" type="button">Registrarse</button>
         <span id="errorMensaje" style="color: red;"></span>
     </form>
     
-    <script src="./register.js"></script>
+    <script src="/assets/js/register.js"></script>
 </body>
 </html>

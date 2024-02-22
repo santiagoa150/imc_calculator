@@ -104,9 +104,9 @@ function deleteIMC(event) {
     const pesoInput = document.getElementById('peso_input');
     const alturaInput = document.getElementById('altura_input');
     pesoInput.value = '';
-    pesoInput.setAttribute('disabled', false);
+    pesoInput.removeAttribute('disabled');
     alturaInput.value = '';
-    alturaInput.setAttribute('disabled', false);
+    alturaInput.removeAttribute('disabled');
     document.getElementById('guardar_button').style.display = 'none';
     document.getElementById('calcular_button').style.display = 'block';
     imc = NaN;

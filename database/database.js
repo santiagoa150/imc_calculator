@@ -55,6 +55,7 @@ router.post("/sign_up", (request, response) => {
     const nombre = request.body.nombrecompleto;
     const connection = new Client(dbConfig);
 
+    console.log(cedula, contraseña, nombre);
     connection.connect((err) => {
         if (err) {
             console.error("Error en la conexión:", err);
@@ -166,7 +167,7 @@ router.get('/getData', async (req, res) => {
     connection.connect((err) => {
         if (err) {
             console.error("Error en la conexión:", err);
-            response.status(500).send("Error en la conexión a la base de datos.");
+            res.status(500).send("Error en la conexión a la base de datos.");
             return;
         }
 
@@ -177,7 +178,7 @@ router.get('/getData', async (req, res) => {
         connection.query(select, (err, result) => {
             if (err) {
                 console.error("Error en la inserción del imc:", err);
-                response.status(500).send("Error en la inserción del imc.");
+                res.status(500).send("Error en la inserción del imc.");
             } else {
                 console.log("registro obtenido correctamente")
                 const user = result?.rows?.[0];
