@@ -135,7 +135,7 @@ router.post("/insert_imc", (request, response) => {
 });
 
 router.get("/get_imcs", (request, response) => {
-    const cedula = request.body.cc
+    const cedula = request.query.cc;
     const connection = new Client(dbConfig);
     connection.connect((err) => {
         if (err) {
